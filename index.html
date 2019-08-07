@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Bing</title>
+    <link rel="stylesheet" href="resources/css/ext-all.css">
+
+    <script src="adapter/ext/ext-base.js"></script>
+    <script src="ext-all.js"></script>
+    <script>
+        Ext.onReady(function () {
+            ColorPlugin = function() {
+                this.init = function (cmp) {
+                    cmp.bodyStyle = 'color: red'
+                }
+            }
+
+            Ext.ns('com.ita');
+            com.ita.CancelButton = Ext.extend(Ext.Button, {
+                text : 'Cancel',
+                width: 100,
+                initComponent : function() {
+                    com.ita.CancelButton.superclass.initComponent.call(this);
+                    this.on('click', this.onButtonClick, this);
+                },
+                onButtonClick : function(oEvent) {
+                    Ext.Msg.alert('Cancel Button', 'This is customized cancel button, you clicked me.');
+                }
+            });
+            Ext.reg('com.ita.CancelButton', com.ita.CancelButton);
+
+            var container = new Ext.Container({
+                id: 'container',
+                renderTo: 'test',
+                layout: 'table',
+                cls: 'container',
+                y: 200,
+                layoutConfig: {
+                    columns: 2
+                },
+                items: [
+                {
+                    colspan: 1,
+                    width: 150,
+                    height: 50,
+                    layout: 'hbox',
+                    x: 150,
+                    cls: 'logo-container',
+                    xtype: 'container',
+                },
+                    {
+                        xtype: 'tabpanel',
+                        colspan: 1,
+                        plain: true,
+                        style: 'position: relative; left: 150px',
+                        height: 50,
+                        width: 600,
+                        activeTab: 0,
+                        animScroll:true,
+                        enableTabScroll:true,
+                        items: [
+                            {
+                                title: '国内版',
+                                items: [
+                                    {
+                                        id: 'content',
+                                        triggerClass: 'x-form-search-trigger',
+                                        width: 600,
+                                        height: 50,
+                                        xtype: 'trigger',
+                                        onTriggerClick: function(e) {
+                                            Ext.getCmp('age').setValue(22);
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                title: '国际版',
+                                items: [
+                                    {
+                                        id: 'content',
+                                        triggerClass: 'x-form-search-trigger',
+                                        width: 600,
+                                        height: 50,
+                                        xtype: 'trigger',
+                                        onTriggerClick: function(e) {
+                                            Ext.getCmp('age').setValue(22);
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                    ]
+            })
+        })
+    </script>
+    <style>
+        body{
+            background:url('image/background.jpg') no-repeat;
+        }
+        .container{
+            position: relative;
+        }
+        .logo-container{
+            background: transparent url('image/bing.png') no-repeat;
+            position: relative;
+        }
+        .input-container{
+            position: relative;
+            border-radius: 0px 5px 5px 5px;
+            font-size: 25px;
+            padding-left: 10px;
+            padding-right: 50px;
+            background-image: url('image/bing.png');
+            background-repeat: no-repeat;
+            background-position: 590px -55px
+        }
+        .buttons-container{
+            position: relative;
+        }
+
+        .buttons-container #ext-gen12{
+            font-size: 25px;
+        }
+
+        .buttons-container #ext-gen14{
+            font-size: 25px;
+        }
+
+        .left-btn{
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div id="page">
+    <div id="test"></div>
+</div>
+</body>
+</html>
